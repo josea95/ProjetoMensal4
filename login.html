@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/login.css">
+    <title>Tela de Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <form id="login-form" class="login-form">
+            <h1>Login</h1>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="Digite seu e-mail" required>
+            </div>
+            <div id="error-message" class="error-message hidden"></div> <!-- Elemento para mensagens de erro -->
+            <button type="submit" class="submit">Entrar</button>
+        </form>
+    </div>
+    <script type="module" src="src/javascript/login.js"></script> <!-- Caminho ajustado -->
+</body>
+</html>
