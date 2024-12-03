@@ -25,3 +25,20 @@ document.querySelectorAll('.kanban-card').forEach(card => {
         e.currentTarget.appendChild(dragCard);
         })
     })
+
+    // Função para alternar entre temas
+function toggleTheme() {
+    const body = document.body;
+    const icon = document.querySelector('.theme-toggle i');
+    
+    body.classList.toggle('dark-mode'); // Alterna o tema no body
+
+    // Altera o ícone dinamicamente
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun'); // Ícone de sol no modo noturno
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon'); // Ícone de lua no modo claro
+    }
+}
