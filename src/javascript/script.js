@@ -1,3 +1,4 @@
+
 // Seleciona todos os elementos com a classe '.kanban-card' e adiciona eventos a cada um deles
 document.querySelectorAll('.kanban-card').forEach(card => {
     // Evento disparado quando começa a arrastar um card
@@ -26,7 +27,30 @@ document.querySelectorAll('.kanban-card').forEach(card => {
         })
     })
 
-    // Função para alternar entre temas
+    // Exemplo de função para buscar dados da API e preencher o seletor
+async function fetchBoards() {
+    try {
+        const response = await fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Boards'); // Substitua pela URL da API real
+        const boards = await response.json();
+
+        const selector = document.getElementById('board-selector');
+
+        // Adiciona opções ao seletor
+        boards.forEach(board => {
+            const option = document.createElement('option');
+            option.value = board.id; // Use o atributo relevante da API
+            option.textContent = board.Name; // Use o atributo relevante da API
+            selector.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Erro ao buscar boards:', error);
+    }
+}
+
+// Chama a função ao carregar a página
+fetchBoards();
+
+// Função para alternar entre temas
 function toggleTheme() {
     const body = document.body;
     const icon = document.querySelector('.theme-toggle i');
@@ -42,3 +66,5 @@ function toggleTheme() {
         icon.classList.add('fa-moon'); // Ícone de lua no modo claro
     }
 }
+
+

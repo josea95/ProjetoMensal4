@@ -148,7 +148,7 @@ color: #a8a8aa;
 /* Estilo do botão de alternância de tema */
 .theme-toggle {
     position: fixed; /* Fixa o botão na tela */
-    top: 20px; /* Distância do topo */
+    top: 10px; /* Distância do topo */
     right: 20px; /* Distância da direita */
     background-color: #d573b6; /* Cor do botão no modo claro */
     color: white; /* Cor do ícone */
@@ -191,3 +191,34 @@ body.dark-mode .kanban-column {
 body.dark-mode .kanban-title h2 {
     color: #ffffff; /* Altere a cor do texto para branco */
 }
+
+/* Container dos botões no topo */
+.top-bar {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Estilo do botão de seleção */
+.board-selector {
+    background-color: #d573b6;
+    color:black;
+    border: none;
+    border-radius: 8px; /* Borda levemente arredondada */
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+}
+.board-selector:focus {
+    outline: 2px solid #b15797;
+}
+.board-selector option {
+    color: black; /* Garante que o texto fique visível */
+}
+
+
+
