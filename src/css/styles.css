@@ -1,224 +1,168 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-*{
-    font-family: 'poppins',sans-serif;
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body{
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Estilo geral */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
     background: linear-gradient(90deg, #a5b4fc, #93c5fd);
+    color: #4b5563;
+    min-height: 100vh;
+}
 
+/* Navbar */
+.navbar-custom {
+    background-color: #6ed0bc;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
 }
-.kanban{
-    display: flex;
-    gap:14px;
-    padding: 24px;
-    width: 100%;
-    height: 90vh;
-    overflow: auto;
-}
-.kanban-column{
-     display: flex;
-     flex-direction: column;
-     gap:18px;
-     height: 100%;
-     overflow-y: auto;
-     background-color: white;
-     border-radius: 12px;
-     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
-     padding: 12px;
-     overflow: hidden;
-     position: relative;
-     min-width: 252px;
-}
-.kanban-column::after{
-    position: absolute;
-    content: '';
-    height: 5px;
-    width: 100%;
-    top:0;
-    left: 0;
-}
-.kanban-column[data-id="1"]::after{
-background-color: #d573b6;
-}
-.kanban-column[data-id="2"]::after{
-    background-color: #fea065;
-}
-.kanban-column[data-id="3"]::after{
-    background-color: #fed565
-}
-.kanban-column[data-id="4"]::after{
-    background-color: #92e5fb
-}
-.kanban-column[data-id="5"]::after{
-    background-color: #6ed0bc
-}
-.kanban-title{
-display: flex;
-justify-content: space-between;
-}
-.kanban-title h2{
-font-size: 18px;
-color:#4b5563;
-font-weight: 600;
-}
-.add-card{
-    color:#4b5563;
-    font-size: 20px;
-    background-color: transparent;
-    cursor: pointer;
-    border:none;
-}
-.kanban-cards{
-display: flex;
-flex-direction: column;
-gap:8px;
-height: 100%;
-overflow-y: auto;
-overflow-x: hidden;
-}
-.kanban-card{
-    display: flex;
-    flex-direction: column;
-    gap:8px;
+
+.navbar-custom .btn {
     background-color: #ffffff;
-    border-radius:14px;
-    padding: 10px;
-    box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.1);
-    cursor: pointer;
-}
-.badge{
-    color: #ffffff;
-    width: fit-content;
-    font-size: 12px;
-    padding: 4px 8px;
-    border-radius: 12px;
-}
-.badge.high{
-    background-color: #d573b6;
-}
-.badge.medium{
-background-color: #fea065;
-}
-.badge.low{
-   background-color: #92e5fb;
-}
-.card-infos{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.card-icons{
-    display: flex;
-    gap:18px
-}
-.card-icons i {
-color: #a8a8aa;
-}
-.user img{
-    width: 40px;
-    height: 42px;
-    border-radius: 100%;
-    object-fit: cover;
-}
-.dragging{
-    opacity: 0.5;
-}
-.cards-hover{
-    background-color: #eaeffa;
-    border-radius: 8px;
-}
-*::-webkit-scrollbar{
-    width: 8px;
-}
-*::-webkit-scrollbar-track{
-    background-color: #eaeffa;
-    border-radius: 8px;
-}
-*::-webkit-scrollbar-thumb{
-    background-color: #b7d3fb;
-    border-radius: 20px;
-}
-
-/* Estilo do botão de alternância de tema */
-.theme-toggle {
-    position: fixed; /* Fixa o botão na tela */
-    top: 10px; /* Distância do topo */
-    right: 20px; /* Distância da direita */
-    background-color: #d573b6; /* Cor do botão no modo claro */
-    color: white; /* Cor do ícone */
-    border: none; /* Remove bordas */
-    width: 60px;
-    padding: 12px; /* Tamanho do botão */
-    border-radius: 12px; /* Bordas arredondadas */
-    cursor: pointer; /* Estilo de cursor ao passar o mouse */
-    z-index: 100; /* Garante que fique acima dos outros elementos */
-    transition: background-color 0.3s; /* Transição suave */
-}
-
-.theme-toggle:hover {
-    background-color: #6ed0bc; /* Cor ao passar o mouse */
-}
-
-/* Modo noturno - cor do botão */
-body.dark-mode .theme-toggle {
-    background-color: #a5b4fc; /* Cor no modo noturno */
-}
-body.dark-mode .theme-toggle:hover{
-background-color: #6ed0bc;
-}
-/* Ícone no modo noturno */
-body.dark-mode .theme-toggle i {
-    color: #ffffff; /* Cor do ícone no modo noturno */
-}
-
-/* Adiciona suporte ao modo noturno para o restante do site */
-body.dark-mode {
-    background: linear-gradient(90deg, #374151, #1f2937); /* Fundo escuro */
-}
-
-/* Opcional: Ajuste de cores para outros elementos no modo noturno */
-body.dark-mode .kanban-column {
-    background-color: #1f2937; /* Fundo das colunas no modo noturno */
-    color: black; /* Texto claro */
-}
-/* Estilo do texto das colunas no modo noturno */
-body.dark-mode .kanban-title h2 {
-    color: #ffffff; /* Altere a cor do texto para branco */
-}
-
-/* Container dos botões no topo */
-.top-bar {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Estilo do botão de seleção */
-.board-selector {
-    background-color: #d573b6;
-    color:black;
+    color: #4b5563;
+    font-weight: 500;
     border: none;
-    border-radius: 8px; /* Borda levemente arredondada */
-    padding: 8px 12px;
-    font-size: 14px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.navbar-custom .btn:hover {
+    background-color: #e5e7eb;
+}
+
+.navbar-custom .text-white {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.navbar-custom #themeToggle {
+    background-color: transparent;
+    color: #ffffff;
     cursor: pointer;
-    outline: none;
-}
-.board-selector:focus {
-    outline: 2px solid #b15797;
-}
-.board-selector option {
-    color: black; /* Garante que o texto fique visível */
 }
 
+/* Container */
+.container {
+    margin: 2rem auto;
+    max-width: 800px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
 
+#boardTitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #4b5563;
+}
 
+#board {
+    margin-top: 2rem;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #d1d5db;
+    font-size: 1rem;
+    color: #4b5563;
+    min-height: 200px;
+    text-align: left;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dropdown-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #a5b4fc #e5e7eb;
+}
+
+.dropdown-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown-scroll::-webkit-scrollbar-thumb {
+    background-color: #a5b4fc;
+    border-radius: 4px;
+}
+
+.dropdown-scroll::-webkit-scrollbar-track {
+    background-color: #e5e7eb;
+}
+
+/* Logout button */
+#logoutButton {
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#logoutButton:hover {
+    background-color: #ffffff;
+    color: #4b5563;
+}
+
+/* Estilo do botão de alternância */
+#themeToggle {
+    background-color: #f9fafb;
+    color: #4b5563;
+    padding: 0.5rem;
+    border-radius: 50%;
+    border: 1px solid #d1d5db;
+    font-size: 1.2rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#themeToggle:hover {
+    background-color: #e5e7eb;
+}
+
+/* Modo escuro */
+body.dark-mode {
+    background: linear-gradient(90deg, #1f2937, #374151);
+    color: #e5e7eb;
+}
+
+body.dark-mode .navbar-custom {
+    background-color: #374151;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .navbar-custom .btn {
+    background-color: #4b5563;
+    color: #f9fafb;
+}
+
+body.dark-mode .container {
+    background-color: #1f2937;
+    color: #e5e7eb;
+    border: 1px solid #4b5563;
+}
+
+body.dark-mode #board {
+    background-color: #4b5563;
+    border-color: #6b7280;
+    color: #f9fafb;
+}
+
+body.dark-mode #themeToggle {
+    background-color: #4b5563;
+    color: #f9fafb;
+}
+
+body.dark-mode #logoutButton {
+    background-color: transparent;
+    border: 1px solid #e5e7eb;
+    color: #e5e7eb;
+}
+
+body.dark-mode #logoutButton:hover {
+    background-color: #e5e7eb;
+    color: #4b5563;
+}
